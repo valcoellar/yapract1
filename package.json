@@ -1,0 +1,14 @@
+{
+  "name": "yapract1",
+  "version": "1.0.0",
+  "description": "Yet another Practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Valentin Coellar S 2023",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
