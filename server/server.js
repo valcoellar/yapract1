@@ -4,7 +4,7 @@ const app = express();
 // Middleware
 const fileServerMiddleware = express.static('public');  //<<-- server from public directory
 
-app.use('/', fileServerMiddleware);  // <<-- mount the middleware
+app.use('/', fileServerMiddleware);  // <<--- mount the middleware
 
 
 
