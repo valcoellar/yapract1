@@ -22,10 +22,8 @@ return(
           </tr>
         </thead>
 	<tbody>
-          <IssueRow rowStyle={rowStyle} issue_id={1}
-            issue_title="Error in console when clicking Add" />
-          <IssueRow rowStyle={rowStyle} issue_id={2}
-            issue_title="Missing bottom border on panel" />
+          <IssueRow rowStyle={rowStyle} issue_id={1} issue_title="Error in console when clicking Add" />
+          <IssueRow rowStyle={rowStyle} issue_id={2} issue_title="Missing bottom border on panel" />
         </tbody>
 	</table>
 	);
