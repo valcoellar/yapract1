@@ -10,7 +10,6 @@ return (
 }
 
 // ---------------------------------------------
-// Passing data using Children IssueTable --> IssueRow
 class IssueTable extends React.Component {
 	render(){
 		const rowStyle = {border: "1px solid silver", padding: 4};
@@ -23,13 +22,8 @@ return(
           </tr>
         </thead>
 	<tbody>
-          <IssueRow rowStyle={rowStyle} issue_id={1}>Error in console when clicking Add</IssueRow>
-          <IssueRow rowStyle={rowStyle} issue_id={2}>Missing bottom border on panel</IssueRow>
-
-	{/* <!-- old way <IssueRow rowStyle={rowStyle} issue_id={2} issue_title="Missing bottom border on panel" /> --> */}
-	
-
-
+          <IssueRow rowStyle={rowStyle} issue_id={1} issue_title="Error in console when clicking Add" />
+          <IssueRow rowStyle={rowStyle} issue_id={2} issue_title="Missing bottom border on panel" />
         </tbody>
 	</table>
 	);
@@ -43,7 +37,7 @@ class IssueRow extends React.Component {
 return(
 	<tr>
         <td style={style}>{this.props.issue_id}</td>
-        <td style={style}>{this.props.children}</td>
+        <td style={style}>{this.props.issue_title}</td>
       </tr>
 
 

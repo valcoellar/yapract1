@@ -6,6 +6,7 @@ class IssueFilter extends React.Component {
 }
 
 // ---------------------------------------------
+// Passing data using Children IssueTable --> IssueRow
 class IssueTable extends React.Component {
   render() {
     const rowStyle = {
@@ -22,13 +23,11 @@ class IssueTable extends React.Component {
       style: rowStyle
     }, "Title"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement(IssueRow, {
       rowStyle: rowStyle,
-      issue_id: 1,
-      issue_title: "Error in console when clicking Add"
-    }), /*#__PURE__*/React.createElement(IssueRow, {
+      issue_id: 1
+    }, "Error in console when clicking Add"), /*#__PURE__*/React.createElement(IssueRow, {
       rowStyle: rowStyle,
-      issue_id: 2,
-      issue_title: "Missing bottom border on panel"
-    })));
+      issue_id: 2
+    }, "Missing bottom border on panel")));
   }
 }
 
@@ -40,7 +39,7 @@ class IssueRow extends React.Component {
       style: style
     }, this.props.issue_id), /*#__PURE__*/React.createElement("td", {
       style: style
-    }, this.props.issue_title));
+    }, this.props.children));
   }
 }
 
