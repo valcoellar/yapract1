@@ -1,6 +1,6 @@
-// --------- Dynamic Composition Whith Async State
+// --------- Dynamic Composition Whith State
 // progammatically generated set of components from the state
-// using map ans simulated api call with setTimeout
+// using map
 
 const initialIssues = [{
   id: 1,
@@ -34,23 +34,8 @@ class IssueTable extends React.Component {
   constructor() {
     super();
     this.state = {
-      issues: []
+      issues: initialIssues
     };
-  }
-
-  // This methos is called as soon as the components representation has been 
-  // converted and iserted into the DOM.
-  componentDidMount() {
-    this.loadData();
-  }
-
-  // simulating API call for get the state with setTimeOut
-  loadData() {
-    setTimeout(() => {
-      this.setState({
-        issues: initialIssues
-      });
-    }, 1000);
   }
   render() {
     const rowStyle = {
