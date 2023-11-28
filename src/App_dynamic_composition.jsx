@@ -1,8 +1,8 @@
-// --------- Dynamic Composition Whith State
-// progammatically generated set of components from the state
-// using map
+// --------- Dynamic Composition
+// progammatically generated set of components from an array
+// of issues.  using map
 
-const initialIssues = [
+const issues = [
 	{
 	id: 1,
 	status: "New",
@@ -39,16 +39,10 @@ return (
 // ---------------------------------------------
 // Passing data using Children IssueTable --> IssueRow
 class IssueTable extends React.Component {
-	// --- setting the initial state must be done in the contructor ---
-	constructor() {
-	super();
-	this.state = { issues: initialIssues };
-	}
-
 	render(){
 		const rowStyle = {border: "1px solid silver", padding: 4};
 
-	const issueRows = this.state.issues.map(issue => <IssueRow key={issue.id} issue={issue} />);
+	const issueRows = issues.map(issue => <IssueRow key={issue.id} issue={issue} />);
 
 return(
 <table className="bordered-table">
