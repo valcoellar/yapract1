@@ -1,6 +1,4 @@
-// --------- Dynamic Composition Whith Async State
-// progammatically generated set of components from the state
-// using map ans simulated api call with setTimeout
+// --------- Updating the State
 
 const initialIssues = [{
   id: 1,
@@ -19,6 +17,11 @@ const initialIssues = [{
   due: new Date('2018-08-30'),
   title: 'Missing bottom border on panel'
 }];
+const sampleIssue = {
+  status: 'New',
+  owner: 'Pieta',
+  title: 'Completion date should be optional'
+};
 
 // ---------------------------------------------
 class IssueFilter extends React.Component {
@@ -36,6 +39,9 @@ class IssueTable extends React.Component {
     this.state = {
       issues: []
     };
+    setTimeout(() => {
+      this.createIssue(sampleIssue);
+    }, 2000);
   }
 
   // This methos is called as soon as the components representation has been 
@@ -52,6 +58,16 @@ class IssueTable extends React.Component {
       });
     }, 1000);
   }
+  createIssue(issue) {
+    issue.id = this.state.issues.length + 1; //gets the length of id for add 1 and make the next ID
+    issue.created = new Date(); // gets the current date and time
+    const newIssueList = this.state.issues.slice(); // copy the current state
+    newIssueList.push(issue); // add the new issue to the end of the list
+    this.setState({
+      issues: newIssueList
+    }); // update the state
+  }
+
   render() {
     const rowStyle = {
       border: "1px solid silver",
