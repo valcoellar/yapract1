@@ -54,7 +54,7 @@ class IssueTable extends React.Component {
 
 	}
 	
-	// This methos is called as soon as the components representation has been 
+	// This method is called as soon as the components representation has been 
 	// converted and iserted into the DOM.
 	componentDidMount() {  
 	this.loadData();
