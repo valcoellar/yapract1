@@ -1,4 +1,5 @@
 // --------- Updating the State
+// lifting State Up
 
 const initialIssues = [{
   id: 1,
@@ -45,7 +46,7 @@ class IssueTable extends React.Component {
   }
 
   // This method is called as soon as the components representation has been 
-  // converted and iserted into the DOM.
+  // converted and inserted into the DOM.
   componentDidMount() {
     this.loadData();
   }
@@ -98,7 +99,7 @@ class IssueAdd extends React.Component {
   }
 }
 
-// invocacion de lo s componentes
+// invocacion de los componentes
 
 class IssueList extends React.Component {
   render() {
