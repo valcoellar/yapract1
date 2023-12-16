@@ -35,49 +35,52 @@ class IssueFilter extends React.Component {
 // Passing data using Children IssueTable --> IssueRow
 class IssueTable extends React.Component {
   // --- setting the initial state must be done in the contructor ---
-  constructor() {
-    super();
-    this.state = {
-      issues: []
-    };
-    setTimeout(() => {
-      this.createIssue(sampleIssue);
-    }, 2000);
-  }
 
-  // This method is called as soon as the components representation has been 
-  // converted and inserted into the DOM.
-  componentDidMount() {
-    this.loadData();
-  }
-
-  // simulating API call for get the state with setTimeOut
-  loadData() {
-    setTimeout(() => {
-      this.setState({
-        issues: initialIssues
-      });
-    }, 1000);
-  }
-  createIssue(issue) {
-    issue.id = this.state.issues.length + 1; //gets the length of id for add 1 and make the next ID
-    issue.created = new Date(); // gets the current date and time
-    const newIssueList = this.state.issues.slice(); // copy the current state
-    newIssueList.push(issue); // add the new issue to the end of the list
-    this.setState({
-      issues: newIssueList
-    }); // update the state
-  }
+  /* moving this
+   	 constructor() {
+  	super();
+  	this.state = { issues: [] };
+  
+  	setTimeout(() => {
+  	this.createIssue( sampleIssue );
+  	}, 2000);	
+  
+  	}
+  	
+  	// This method is called as soon as the components representation has been 
+  	// converted and inserted into the DOM.
+  	componentDidMount() {  
+  	this.loadData();
+  	}
+  
+  	// simulating API call for get the state with setTimeOut
+  	loadData() {
+  		setTimeout(() => {
+  		this.setState({ issues: initialIssues });
+  		}, 1000);
+  	}
+  
+  	createIssue( issue ) {
+  		issue.id = this.state.issues.length + 1;  		//gets the length of id for add 1 and make the next ID
+  		issue.created = new Date(); 		// gets the current date and time
+  		const newIssueList = this.state.issues.slice(); // copy the current state
+  		newIssueList.push(issue);  		// add the new issue to the end of the list
+  		this.setState({ issues: newIssueList }); // update the state
+  	}
+  
+  */
 
   render() {
-    const rowStyle = {
-      border: "1px solid silver",
-      padding: 4
-    };
-    const issueRows = this.state.issues.map(issue => /*#__PURE__*/React.createElement(IssueRow, {
+    const issueRows = this.props.issues.map(issue => /*#__PURE__*/React.createElement(IssueRow, {
       key: issue.id,
       issue: issue
     }));
+
+    /*	
+    const rowStyle = {border: "1px solid silver", padding: 4};
+    const issueRows = this.state.issues.map(issue => <IssueRow key={issue.id} issue={issue} />);
+    */
+
     return /*#__PURE__*/React.createElement("table", {
       className: "bordered-table"
     }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ID"), /*#__PURE__*/React.createElement("th", null, "Status"), /*#__PURE__*/React.createElement("th", null, "Owner"), /*#__PURE__*/React.createElement("th", null, "Created"), /*#__PURE__*/React.createElement("th", null, "Effort"), /*#__PURE__*/React.createElement("th", null, "Due Date"), /*#__PURE__*/React.createElement("th", null, "Title"))), /*#__PURE__*/React.createElement("tbody", null, issueRows));
@@ -94,6 +97,12 @@ class IssueRow extends React.Component {
 
 // ---------------------------------------------
 class IssueAdd extends React.Component {
+  constructor() {
+    super();
+    setTimeout(() => {
+      this.props.createIssue(sampleIssue);
+    }, 2000);
+  }
   render() {
     return /*#__PURE__*/React.createElement("div", null, "This is a placeholder for a form to add an issue.");
   }
@@ -102,8 +111,38 @@ class IssueAdd extends React.Component {
 // invocacion de los componentes
 
 class IssueList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      issues: []
+    };
+    this.createIssue = this.createIssue.bind(this);
+  }
+  componentDidMount() {
+    this.loadData();
+  }
+  loadData() {
+    setTimeout(() => {
+      this.setState({
+        issues: initialIssues
+      });
+    }, 500);
+  }
+  createIssue(issue) {
+    issue.id = this.state.issues.length + 1;
+    issue.created = new Date();
+    const newIssueList = this.state.issues.slice();
+    newIssueList.push(issue);
+    this.setState({
+      issues: newIssueList
+    });
+  }
   render() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Issue Tracker"), /*#__PURE__*/React.createElement(IssueFilter, null), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(IssueTable, null), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(IssueAdd, null));
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Issue Tracker"), /*#__PURE__*/React.createElement(IssueFilter, null), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(IssueTable, {
+      issues: this.state.issues
+    }), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(IssueAdd, {
+      createIssue: this.createIssue
+    }));
   }
 }
 const element = /*#__PURE__*/React.createElement(IssueList, null);
